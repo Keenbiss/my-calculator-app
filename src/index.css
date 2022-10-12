@@ -1,13 +1,64 @@
+html,
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: sans-serif;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.app {
+  max-width: 420px;
+  min-height: 96vh;
+  margin: 0 auto;
+  padding: 16px;
+  grid-template-areas:
+    "total total total total"
+    "modif modif modif oper"
+    "digit digit digit oper"
+    "digit digit digit oper"
+    "digit digit digit oper"
+    "digit digit digit oper";
+  grid-auto-columns: 1fr;
+  border: 3px solid blue;
+}
+.app,
+.grid {
+  display: grid;
+}
+.input {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 2rem;
+  grid-area: total;
+  border: 1px solid #333;
+}
+.mods {
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  grid-area: modif;
+}
+.ops {
+  grid-area: oper;
+}
+.digs {
+  display: flex;
+  flex-wrap: wrap;
+  grid-area: digit;
+}
+button {
+  font-size: 40px;
+  border: 1px solid #333;
+  cursor: pointer;
+}
+.mods button {
+  background-color: #ccc;
+  color: blue;
+}
+.ops button {
+  background-color: #efefef;
+  color: blue;
+  font-weight: bolder;
+}
+.digs button {
+  background-color: #efefef;
+  flex: 1 0 26%;
 }

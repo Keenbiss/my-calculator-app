@@ -1,23 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
 
 function App() {
+  const [input, setInput] = useState("");
+
+  const btn = [];
+  [7, 8, 9, 4, 5, 6, 1, 2, 3, "00", 0, "."].forEach((item) => {
+    btn.push(
+      <button
+        onClick={(e) => {
+          setInput(input + e.target.value);
+        }}
+        value={item}
+        key={item}
+      >
+        {""}
+        {item}
+      </button>
+    );
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="app">
+      <div className="input">{input}</div>
+
+      <div className="digs">{btn}</div>
+
+      <div className="mods grid">
+        <button onClick={() => setInput(input.substr(0, input.length - 1))}>
+          DEL
+        </button>
+        <button onClick={() => setInput("")} value="">
+          AC
+        </button>
+      </div>
+
+      <div className="ops grid">
+        <button onClick={(e) => setInput(input + e.target.value)} value="/">
+          /
+        </button>
+        <button onClick={(e) => setInput(input + e.target.value)} value="*">
+          *
+        </button>
+        <button onClick={(e) => setInput(input + e.target.value)} value="-">
+          -
+        </button>
+        <button onClick={(e) => setInput(input + e.target.value)} value="+">
+          +
+        </button>
+        <button
+          onClick={(e) => {
+            try {
+              setInput(
+                String(eval(input)).length > 3 &&
+                  String(eval(input)).includes(".")
+                  ? String(eval(input).toFixed(4))
+                  : String(eval(input))
+              );
+            } catch (e) {
+              console.log(e);
+            }
+          }}
+          value="="
         >
-          Learn React
-        </a>
-      </header>
+          =
+        </button>
+      </div>
     </div>
   );
 }
